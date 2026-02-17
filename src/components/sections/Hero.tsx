@@ -23,57 +23,61 @@ export default function Hero() {
     const text = "Engineering the Future Beyond Gravity.";
 
     return (
-        <div className="relative h-[90vh] w-full overflow-hidden">
+        <section className="relative w-full h-[85vh] flex flex-col items-center justify-center overflow-hidden">
             <Hero3D />
 
-            <SectionWrapper className="z-10 flex flex-col items-center justify-center text-center h-full">
-                <motion.h1
-                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50"
+            <SectionWrapper className="z-10 flex flex-col items-center text-center relative max-w-5xl mx-auto px-4">
+                <motion.div
                     initial="hidden"
                     animate="visible"
-                    variants={sentenceVariants}
+                    className="flex flex-col items-center w-full"
                 >
-                    {text.split("").map((char, index) => (
-                        <motion.span key={index} variants={letterVariants}>
-                            {char}
-                        </motion.span>
-                    ))}
-                </motion.h1>
+                    <motion.h1
+                        className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50"
+                        variants={sentenceVariants}
+                    >
+                        {text.split("").map((char, index) => (
+                            <motion.span key={index} variants={letterVariants}>
+                                {char}
+                            </motion.span>
+                        ))}
+                    </motion.h1>
 
-                <motion.p
-                    className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5, duration: 1 }}
-                >
-                    Pioneering the next generation of digital experiences with anti-gravity design and immersive technology.
-                </motion.p>
+                    <motion.p
+                        className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                    >
+                        Pioneering the next generation of digital experiences with anti-gravity design and immersive technology.
+                    </motion.p>
 
-                <motion.div
-                    className="flex gap-6 justify-center"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 2, duration: 0.5 }}
-                >
-                    <button className="px-8 py-3 bg-brand-blue text-brand-black font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] transition-all duration-300 transform hover:scale-105">
-                        Explore the Future
-                    </button>
-                    <button className="px-8 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-                        Get a Quote
-                    </button>
+                    <motion.div
+                        className="flex flex-wrap gap-6 justify-center items-center w-full"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.8, duration: 0.5 }}
+                    >
+                        <button className="px-8 py-3 bg-brand-blue text-brand-black font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] transition-all duration-300 transform hover:scale-105">
+                            Explore the Future
+                        </button>
+                        <button className="px-8 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+                            Get a Quote
+                        </button>
+                    </motion.div>
                 </motion.div>
             </SectionWrapper>
 
             {/* Scroll Indicator */}
             <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 3, duration: 1 }}
+                transition={{ delay: 1.5, duration: 1 }}
             >
-                <div className="w-[1px] h-16 bg-gradient-to-b from-brand-blue to-transparent animate-pulse" />
+                <div className="w-[1px] h-12 bg-gradient-to-b from-brand-blue to-transparent animate-pulse" />
                 <span className="text-xs text-brand-blue/70 tracking-widest uppercase">Scroll</span>
             </motion.div>
-        </div>
+        </section>
     );
 }

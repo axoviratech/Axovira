@@ -73,6 +73,7 @@ export default function Footer() {
                                 <a
                                     key={i}
                                     href="#"
+                                    aria-label={`Visit our ${i === 0 ? 'Twitter' : i === 1 ? 'LinkedIn' : 'Instagram'}`}
                                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-blue/50 hover:text-brand-blue transition-all duration-300"
                                 >
                                     <Icon size={20} />
