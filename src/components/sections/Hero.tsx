@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionWrapper from "../SectionWrapper";
-import Hero3D from "../ui/Hero3D";
+
 
 const letterVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -24,7 +24,7 @@ export default function Hero() {
 
     return (
         <section className="relative w-full h-[85vh] flex flex-col items-center justify-center overflow-hidden">
-            <Hero3D />
+            {/* Hero3D is now integrated into the global Background component to optimize WebGL contexts */}
 
             <SectionWrapper className="z-10 flex flex-col items-center text-center relative max-w-5xl mx-auto px-4">
                 <motion.div
@@ -58,10 +58,10 @@ export default function Hero() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.8, duration: 0.5 }}
                     >
-                        <button className="px-8 py-3 bg-brand-blue text-brand-black font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] transition-all duration-300 transform hover:scale-105">
+                        <button className="px-6 py-3 md:px-8 bg-brand-blue text-brand-black font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] transition-all duration-300 transform hover:scale-105">
                             Explore the Future
                         </button>
-                        <button className="px-8 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+                        <button className="px-6 py-3 md:px-8 border border-white/20 rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
                             Get a Quote
                         </button>
                     </motion.div>

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Background from "@/components/Background";
+import Preloader from "@/components/Preloader";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Solution from "@/components/sections/Solution";
@@ -18,6 +19,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="relative w-full min-h-screen">
+      <Preloader />
       <Background />
       <Navbar />
       <Hero />

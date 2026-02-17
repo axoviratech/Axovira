@@ -101,7 +101,7 @@ export default function RootLayout({
         className={cn(
           inter.variable,
           spaceGrotesk.variable,
-          "antialiased bg-black text-white font-sans overflow-x-hidden"
+          "antialiased bg-black text-white font-sans overflow-x-hidden select-none selection:bg-brand-blue selection:text-black"
         )}
         suppressHydrationWarning
       >
