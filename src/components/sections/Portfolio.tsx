@@ -14,7 +14,7 @@ const projects = [
     {
         title: "Orbital",
         category: "Fintech App",
-        color: "#00f0ff",
+        color: "var(--brand-blue)",
         image: "linear-gradient(to bottom right, #0F2027, #203A43, #2C5364)" // Placeholder
     },
     {
@@ -45,14 +45,14 @@ function ProjectCard({ project, index, range }: { project: any, index: number, r
                     backgroundColor: project.color,
                     top: topOffset
                 }}
-                className="relative w-[90vw] md:w-[80vw] h-[70vh] rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center transform origin-top border border-white/10"
+                className="relative w-[90vw] md:w-[80vw] h-[70vh] rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center transform origin-top border border-border-color hover:shadow-premium transition-shadow duration-500"
             >
                 <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ background: project.image }} />
                 <div className="absolute inset-0 z-0 bg-black/40" /> {/* Overlay for text contrast */}
 
-                <div className="relative z-10 text-center text-white">
-                    <h3 className="text-2xl font-bold uppercase tracking-widest mb-2 text-white/80">{project.category}</h3>
-                    <h2 className="text-6xl md:text-9xl font-black drop-shadow-2xl">{project.title}</h2>
+                <div className="relative z-10 text-center text-white px-4">
+                    <h3 className="text-sm md:text-2xl font-bold uppercase tracking-[0.2em] mb-2 text-white/80">{project.category}</h3>
+                    <h2 className="text-4xl md:text-9xl font-black drop-shadow-2xl leading-none">{project.title}</h2>
                 </div>
             </motion.div>
         </div>
@@ -64,10 +64,10 @@ export default function Portfolio() {
     const { scrollYProgress } = useScroll({ target: ref });
 
     return (
-        <div ref={ref} id="work" className="relative bg-brand-black">
+        <div ref={ref} id="work" className="relative bg-section-bg">
             <div className="py-20 text-center">
-                <h2 className="text-5xl font-bold mb-4">Selected Works</h2>
-                <p className="text-gray-400">Where gravity meets design.</p>
+                <h2 className="text-5xl font-bold mb-4 text-foreground">Selected Works</h2>
+                <p className="text-foreground/70">Where gravity meets design.</p>
             </div>
 
             <div className="flex flex-col">

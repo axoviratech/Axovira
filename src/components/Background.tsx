@@ -23,9 +23,12 @@ function AnimatedStars() {
     );
 }
 
+import { useTheme } from "next-themes";
+
 function HeroElement() {
     const meshRef = useRef<THREE.Mesh>(null);
     const materialRef = useRef<any>(null);
+    const { theme } = useTheme();
 
     const { viewport } = useThree();
     // Responsive scale: if viewport is small (mobile), scale down
@@ -38,28 +41,24 @@ function HeroElement() {
         }
 
         // Scroll Logic for Opacity and Position
-        // Mimicking behavior: opacity 0.6 -> 0 over 0-800px scroll
         if (materialRef.current) {
             const scrollY = window.scrollY;
             const opacity = Math.max(0, 0.6 - (scrollY / 800) * 0.6);
             materialRef.current.opacity = opacity;
-
-            // Optimization: Hide if invisible
             meshRef.current!.visible = opacity > 0;
-
-            // Optional: Parallax Y movement (0 to 200px equivalent in roughly viewport units)
-            // 200px is roughly 2 units in Threejs at this distance? Let's just keep position fixed for now as per original request to not move much.
         }
     });
+
+    const isDark = theme === "dark";
 
     return (
         <Float speed={4} rotationIntensity={1} floatIntensity={2}>
             <TorusKnot ref={meshRef} args={[1, 0.3, 128, 16]} scale={scale}>
                 <MeshDistortMaterial
                     ref={materialRef}
-                    color="#00f0ff"
-                    emissive="#0000ff"
-                    emissiveIntensity={2}
+                    color={isDark ? "#00f0ff" : "#0ea5e9"}
+                    emissive={isDark ? "#0000ff" : "#000000"}
+                    emissiveIntensity={isDark ? 2 : 0}
                     roughness={0.1}
                     metalness={1}
                     distort={0.4}
@@ -73,40 +72,53 @@ function HeroElement() {
     );
 }
 
+import { useEffect, useState } from "react";
+
 export default function Background() {
+    const { theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const isDark = theme === "dark";
+
     return (
-        <div className="fixed inset-0 -z-10 bg-brand-black">
-            <Canvas
-                camera={{ position: [0, 0, 5], fov: 60 }}
-                gl={{
-                    powerPreference: "high-performance",
-                    antialias: false, // Performance optimization
-                    stencil: false,
-                    depth: false // Stars/Sparkles typically don't need depth write/test if they are background
-                }}
-                dpr={[1, 2]} // Limit pixel ratio for performance
-            >
-                <fog attach="fog" args={['#050510', 5, 20]} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={5} color="#00f0ff" />
+        <div className="fixed inset-0 -z-10 bg-background transition-colors duration-500">
+            {mounted && (
+                <Canvas
+                    camera={{ position: [0, 0, 5], fov: 60 }}
+                    gl={{
+                        powerPreference: "high-performance",
+                        antialias: false,
+                        stencil: false,
+                        depth: false
+                    }}
+                    dpr={[1, 2]}
+                >
+                    <fog attach="fog" args={[isDark ? '#050510' : '#ffffff', 5, 20]} />
+                    <ambientLight intensity={isDark ? 0.5 : 0.8} />
+                    <pointLight position={[10, 10, 10]} intensity={isDark ? 5 : 2} color={isDark ? "#00f0ff" : "#0ea5e9"} />
 
-                <AnimatedStars />
-                <HeroElement />
+                    {isDark && <AnimatedStars />}
+                    <HeroElement />
 
-                <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-                    <Sparkles
-                        count={200}
-                        scale={10}
-                        size={2}
-                        speed={0.4}
-                        opacity={0.5}
-                        color="#00f0ff"
-                    />
-                </Float>
-            </Canvas>
+                    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+                        <Sparkles
+                            count={isDark ? 200 : 100}
+                            scale={10}
+                            size={isDark ? 2 : 4}
+                            speed={0.4}
+                            opacity={isDark ? 0.5 : 0.3}
+                            color={isDark ? "#00f0ff" : "#0f172a"}
+                        />
+                    </Float>
+                </Canvas>
+            )}
 
             {/* Gradient Overlay for Depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-navy/20 to-brand-black pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-navy/10 to-background pointer-events-none" />
         </div>
     );
 }

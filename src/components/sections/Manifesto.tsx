@@ -34,7 +34,7 @@ const commitments = [
 
 export default function Manifesto() {
     return (
-        <SectionWrapper id="manifesto" className="bg-[#030305] border-y border-white/5 py-32 relative overflow-hidden">
+        <SectionWrapper id="manifesto" className="bg-section-bg border-y border-border-color py-32 relative overflow-hidden">
             {/* Background Gradients */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[150px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-cyan/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/3 translate-y-1/3" />
@@ -42,20 +42,20 @@ export default function Manifesto() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
 
                 {/* Left Side: Statement */}
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h4 className="text-brand-cyan font-mono tracking-widest uppercase text-sm mb-4">
+                        <h4 className="text-brand-blue font-mono tracking-widest uppercase text-xs md:text-sm mb-4">
                             Built by Builders.
                         </h4>
-                        <h2 className="text-5xl md:text-7xl font-bold font-heading text-white leading-[1.1] mb-6">
-                            We don&apos;t inflate numbers. <br />
-                            <span className="text-gray-500">We build real systems.</span>
+                        <h2 className="text-4xl md:text-7xl font-bold font-heading text-foreground leading-tight md:leading-[1.1] mb-6">
+                            We don&apos;t inflate numbers. <br className="hidden md:block" />
+                            <span className="text-foreground/60">We build real systems.</span>
                         </h2>
-                        <p className="text-xl text-gray-400 font-light max-w-lg leading-relaxed">
+                        <p className="text-lg md:text-xl text-foreground/70 font-light max-w-lg leading-relaxed">
                             We&apos;re not a large agency. We&apos;re a focused team of developers who treat every project like our own.
                         </p>
                     </motion.div>
@@ -71,15 +71,15 @@ export default function Manifesto() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ scale: 1.02, x: 10 }}
-                            className="group p-6 rounded-xl bg-white/5 border border-white/5 hover:border-brand-cyan/30 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 cursor-default"
+                            className="group p-6 rounded-xl bg-card-bg border border-border-color hover:border-brand-blue/30 hover:bg-foreground/[0.02] hover:shadow-premium backdrop-blur-sm transition-all duration-300 cursor-default"
                         >
                             <div className="flex items-center gap-6">
-                                <div className="p-3 bg-white/5 rounded-lg text-gray-400 group-hover:text-brand-cyan group-hover:bg-brand-cyan/10 transition-colors">
+                                <div className="p-3 bg-brand-blue/5 rounded-lg text-foreground/60 group-hover:text-brand-blue group-hover:bg-brand-blue/10 transition-colors">
                                     <item.icon size={24} />
                                 </div>
                                 <div>
-                                    <h4 className="text-white font-bold text-lg mb-1 group-hover:text-brand-cyan transition-colors">{item.title}</h4>
-                                    <p className="text-sm text-gray-500 group-hover:text-gray-300 transition-colors">{item.description}</p>
+                                    <h4 className="text-foreground font-bold text-lg mb-1 group-hover:text-brand-blue transition-colors">{item.title}</h4>
+                                    <p className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">{item.description}</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -93,10 +93,10 @@ export default function Manifesto() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="mt-32 text-center"
+                className="mt-20 md:mt-32 text-center"
             >
-                <p className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-white to-gray-500 opacity-80">
-                    Still small. Extremely serious.
+                <p className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-foreground/40 via-foreground to-foreground/40 opacity-80 px-4">
+                    Still small. But extremely serious.
                 </p>
             </motion.div>
 

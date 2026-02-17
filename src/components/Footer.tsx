@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
+import Logo from "./ui/Logo";
 
 export default function Footer() {
     const scrollToTop = () => {
@@ -21,8 +22,11 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="md:col-span-5">
-                        <Link href="/" className="text-3xl font-bold font-heading tracking-wider text-white mb-6 block">
-                            AXOVIRA
+                        <Link href="/" className="flex items-center gap-2 mb-6 group">
+                            <Logo className="w-12 h-12" />
+                            <span className="text-2xl font-bold font-heading tracking-wider text-white group-hover:text-brand-blue transition-colors">
+                                AXOVIRA
+                            </span>
                         </Link>
                         <p className="text-gray-400 max-w-sm mb-8">
                             Engineering digital ecosystems for the visionaries of tomorrow. Gravity-defying solutions for a boundless future.

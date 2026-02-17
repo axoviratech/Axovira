@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -25,6 +25,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Axovira Technologies" }],
   creator: "Axovira Technologies",
   publisher: "Axovira Technologies",
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=2", sizes: "any" },
+      { url: "/logo.png?v=2", type: "image/png" },
+    ],
+    apple: [
+      { url: "/logo.png?v=2" },
+    ],
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -69,6 +78,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -90,27 +107,35 @@ const jsonLd = {
   description: "Next-generation software engineering firm building anti-gravity digital experiences.",
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           inter.variable,
           spaceGrotesk.variable,
-          "antialiased bg-black text-white font-sans overflow-x-hidden select-none selection:bg-brand-blue selection:text-black"
+          "antialiased font-sans overflow-x-hidden select-none selection:bg-brand-blue selection:text-black"
         )}
-        suppressHydrationWarning
       >
-        <Cursor />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <SmoothScroll>{children}</SmoothScroll>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Cursor />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

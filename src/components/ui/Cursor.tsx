@@ -39,19 +39,20 @@ export default function Cursor() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-8 h-8 rounded-full border border-brand-cyan/50 z-[9999] pointer-events-none mix-blend-difference"
+            className="fixed top-0 left-0 w-8 h-8 rounded-full border border-brand-blue/30 z-[9999] pointer-events-none hidden md:block"
             style={{
                 translateX: cursorXSpring,
                 translateY: cursorYSpring,
                 scale: hovering ? 2.5 : 1,
-                backgroundColor: hovering ? "rgba(0, 240, 255, 0.1)" : "transparent",
+                backgroundColor: hovering ? "var(--brand-blue)" : "transparent",
+                opacity: hovering ? 0.1 : 1,
             }}
         >
             {/* Inner Dot */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-brand-cyan rounded-full shadow-[0_0_10px_#00f0ff]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-brand-blue rounded-full shadow-glow" />
 
-            {/* Glow Trail (Approximate via box-shadow) */}
-            <div className="absolute inset-0 rounded-full shadow-[0_0_20px_rgba(0,240,255,0.3)] opacity-50" />
+            {/* Glow Trail */}
+            <div className="absolute inset-0 rounded-full shadow-glow opacity-20" />
         </motion.div>
     );
 }

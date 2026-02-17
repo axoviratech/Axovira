@@ -29,12 +29,12 @@ export default function Philosophy() {
                         hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 } }
                     }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-12"
+                    className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-foreground mb-12"
                 >
                     Every Great Product Starts With a <span className="text-brand-blue">Bold Idea.</span>
                 </motion.h3>
 
-                <div className="space-y-8 text-lg md:text-2xl text-gray-400 font-light leading-relaxed max-w-3xl mx-auto">
+                <div className="space-y-8 text-lg md:text-2xl text-foreground/70 font-light leading-relaxed max-w-3xl mx-auto">
                     <motion.p
                         variants={{
                             hidden: { opacity: 0, y: 20 },

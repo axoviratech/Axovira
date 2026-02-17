@@ -28,28 +28,28 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <SectionWrapper id="faq" className="bg-brand-black z-10 py-32">
+        <SectionWrapper id="faq" className="bg-section-bg z-10 py-32">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
                 <div className="md:col-span-5">
-                    <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
                         Common <br /> <span className="text-brand-blue">Questions.</span>
                     </h2>
-                    <p className="text-gray-400 text-lg">
+                    <p className="text-foreground/70 text-lg">
                         You have questions. We have engineered answers.
                     </p>
                 </div>
 
                 <div className="md:col-span-7 space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="border border-white/10 rounded-2xl bg-white/5 overflow-hidden backdrop-blur-sm">
+                        <div key={index} className="border border-border-color rounded-2xl bg-card-bg overflow-hidden backdrop-blur-sm">
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                 className="w-full flex items-center justify-between p-6 text-left group"
                             >
-                                <span className={`text-lg md:text-xl font-medium transition-colors ${openIndex === index ? 'text-brand-cyan' : 'text-white group-hover:text-gray-300'}`}>
+                                <span className={`text-lg md:text-xl font-medium transition-colors ${openIndex === index ? 'text-brand-blue' : 'text-foreground'}`}>
                                     {faq.question}
                                 </span>
-                                <span className={`p-2 rounded-full border transition-all duration-300 ${openIndex === index ? 'bg-brand-cyan text-black border-brand-cyan' : 'border-white/20 text-white'}`}>
+                                <span className={`p-2 rounded-full border transition-all duration-300 ${openIndex === index ? 'bg-brand-blue text-white border-brand-blue' : 'border-border-color text-foreground'}`}>
                                     {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
                                 </span>
                             </button>
@@ -62,7 +62,7 @@ export default function FAQ() {
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.3, ease: "easeInOut" }}
                                     >
-                                        <div className="p-6 pt-0 text-gray-400 leading-relaxed">
+                                        <div className="p-6 pt-0 text-foreground/70 leading-relaxed">
                                             {faq.answer}
                                         </div>
                                     </motion.div>

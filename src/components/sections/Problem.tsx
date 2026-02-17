@@ -16,7 +16,7 @@ export default function Problem() {
     ];
 
     return (
-        <SectionWrapper id="problem" className="bg-brand-black z-10">
+        <SectionWrapper id="problem" className="bg-section-bg z-10">
             <div ref={ref} className="flex flex-col items-center justify-center min-h-[60vh] gap-10">
                 {problems.map((text, index) => (
                     <motion.div
@@ -25,15 +25,15 @@ export default function Problem() {
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: index * 0.5, duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-6xl font-bold text-gray-300 hover:text-white transition-colors cursor-default">
+                        <h2 className="text-4xl md:text-6xl font-bold text-foreground/70 hover:text-brand-blue transition-colors cursor-default">
                             <GlitchText text={text} />
                         </h2>
                     </motion.div>
                 ))}
             </div>
 
-            {/* Glitch Overlay Effect - Optimized: Removed mix-blend-mode for performance */}
-            <div className="absolute inset-0 bg-white/5 opacity-[0.02] pointer-events-none" />
+            {/* Glitch Overlay Effect */}
+            <div className="absolute inset-0 bg-foreground/5 opacity-[0.02] pointer-events-none" />
         </SectionWrapper>
     );
 }
